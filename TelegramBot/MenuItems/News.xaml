@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="Administration.MenuItems.News"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Administration.MenuItems"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Новости" Margin="0,0,5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                
+                <ListBox x:Name="NewsList" Grid.Column="1" SelectionChanged="NewsList_SelectionChanged" OverridesDefaultStyle="False"
+                        ScrollViewer.CanContentScroll="False"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Title}"/>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Height="50" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Canvas x:Name="Add" Width="24" Height="24" Margin="0,0,10,0" MouseLeftButtonDown="Add_MouseLeftButtonDown">
+                        <Path  Fill="#FF0FAD36" Data="M19,3H14.82C14.4,1.84 13.3,1 12,1C10.7,1 9.6,1.84 9.18,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M12,3A1,1 0 0,1 13,4A1,1 0 0,1 12,5A1,1 0 0,1 11,4A1,1 0 0,1 12,3M13,12H16V14H13V17H11V14H8V12H11V9H13V12Z"  />
+                    </Canvas>
+                    <Canvas x:Name="Delete" Width="24" Height="24" Margin="10,0,0,0" MouseLeftButtonDown="Delete_MouseLeftButtonDown">
+                        <Path  Fill="#FFB53C18" Data="M19 3H14.82C14.4 1.84 13.3 1 12 1S9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.11 3.9 21 5 21H19C20.11 21 21 20.11 21 19V5C21 3.9 20.11 3 19 3M12 3C12.55 3 13 3.45 13 4S12.55 5 12 5 11 4.55 11 4 11.45 3 12 3M16 14H8V12H16V14Z"  />
+                    </Canvas>
+
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Column="1" Header="Редактирование">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Название:" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12"/>
+                <TextBlock Text="Текст:" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" Grid.Row="1"/>
+                <TextBox x:Name="Title" HorizontalAlignment="Stretch" VerticalAlignment="Center" FontSize="12" Grid.Column="1"  Cursor="Arrow" />
+                <TextBox x:Name="Body" TextWrapping="Wrap" AcceptsReturn="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="12"  Grid.Row="2" Grid.ColumnSpan="2"  Cursor="Arrow" BorderBrush="#89000000" />
+                <Button Grid.Row="3" Grid.ColumnSpan="2" Content="Сохранить изменения" Margin="5,0,5,0" Click="Button_Click"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
